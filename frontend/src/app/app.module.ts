@@ -10,10 +10,14 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AdminComponent } from './dashboard/admin/admin.component';
 import { UserComponent } from './dashboard/user/user.component';
-import { ToursComponent } from './shared-components/tours/tours.component'
+import { ToursComponent } from './tours/tours.component'
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AboutusComponent } from './aboutus/aboutus.component';
+import { SearchComponent } from './search/search.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { HttpClientModule } from '@angular/common/http';
     UserComponent,
     ToursComponent,
     NotFoundComponent,
+    AboutusComponent,
+    SearchComponent,
+    AdminDashboardComponent,
+    UserDashboardComponent,
     
   ],
   imports: [

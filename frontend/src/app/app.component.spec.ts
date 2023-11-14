@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'XTT-NG-FRONTEND'`, () => {
+  it(`should have as title 'Xplora'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('XTT-NG-FRONTEND');
+    expect(app.title).toEqual('Xplora');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('XTT-NG-FRONTEND app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Xploraapp is running!');
   });
 });

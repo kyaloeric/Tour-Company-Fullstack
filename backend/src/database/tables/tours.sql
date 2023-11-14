@@ -1,3 +1,5 @@
+--  USE XTours;
+
 CREATE TABLE Tours(
     tourID VARCHAR(100) PRIMARY KEY,
     name VARCHAR(200) NOT NULL,

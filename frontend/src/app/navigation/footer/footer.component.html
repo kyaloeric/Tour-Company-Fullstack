@@ -1,1 +1,14 @@
-<p>footer works!</p>
+<!-- footer.component.html -->
+
+<footer class="bg-blue-900 text-white py-8" [class.visible]="showFooter" [class.footer]="showFooter">
+    <div class="container mx-auto flex flex-col items-center">
+      <p class="text-lg mb-4">&copy; 2023 Xplora. All rights reserved.</p>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-gray-300">Home</a>
+        <a href="#" class="hover:text-gray-300">Tours</a>
+        <a href="#" class="hover:text-gray-300">About Us</a>
+        <a href="#" class="hover:text-gray-300">Contact</a>
+      </div>
+    </div>
+</footer>
+  

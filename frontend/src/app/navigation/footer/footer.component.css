@@ -1,0 +1,26 @@
+html {
+    scroll-behavior: smooth;
+  }
+  
+
+
+
+:host {
+    display: block;
+  }
+  
+  .footer {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  
+  .footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+
+  :host {
+    margin-top: 40px;
+  }

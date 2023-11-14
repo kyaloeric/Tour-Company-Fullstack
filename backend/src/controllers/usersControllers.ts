@@ -10,7 +10,7 @@ import { tokenGenerator } from '../utils/generateToken';
 
 const dbhelpers=new Connection;
 
-export const registerUserController=async (req:Request,res:Response)=>{
+export const registerUser=async (req:Request,res:Response)=>{
 
 try{
     const {fullName,email,password}=req.body;
@@ -53,7 +53,7 @@ try{
 }
 
 
-export const loginUserController=async (req:Request,res:Response)=>{
+export const loginUser=async (req:Request,res:Response)=>{
     const { email, password }=req.body;
 
     const checkEmailResult=await dbhelpers.execute('getUserByEmail',{email});
@@ -116,7 +116,7 @@ export const getUserDetails=async(req:Request,res:Response)=>{
       }
 }
 
-export const getAllUsersControllers=async(req:Request, res:Response)=>{
+export const getAllUsers=async(req:Request, res:Response)=>{
     try{
         const users=(await dbhelpers.execute('fetchAllUsers')).recordset
 
