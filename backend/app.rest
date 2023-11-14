@@ -1,0 +1,72 @@
+###
+POST http://localhost:4500/users/register/
+Content-Type: application/json
+
+{
+    "fullName": "Kyalo Eric",
+    "email": "ricskyalo2@gmail.com",
+    "password": "12345678"
+}
+
+
+### login 
+POST http://localhost:4500/users/login/
+Content-Type: application/json
+
+{
+   "email": "kyalo36@gmail.com",
+   "password": "12345678" 
+}
+
+### fetching users
+GET http://localhost:4500/users/
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6IklzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY5OTc5Mjc5NSwiZXhwIjoxNjk5OTY1NTk1fQ.pP5tp2mx2slxpvxOIuV1W2VPMFKcR1b-PUuSQrUzQPY
+
+
+### fetching user
+GET http://localhost:4500/users/details/f99ac5ee-c9da-4f7c-b719-62ae36f5b6b5/
+token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6IklzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY5OTc5Mjc5NSwiZXhwIjoxNjk5OTY1NTk1fQ.pP5tp2mx2slxpvxOIuV1W2VPMFKcR1b-PUuSQrUzQPY
+
+
+
+### checking user details
+GET http://localhost:4500/users/checkUserDetails/
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTlhYzVlZS1jOWRhLTRmN2MtYjcxOS02MmFlMzZmNWI2YjUiLCJmdWxsTmFtZSI6IklzYWFjIEtpbGltbyIsImVtYWlsIjoiaXNhYWNraWxpbW9rMkBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlhdCI6MTY5OTc4NjY4NiwiZXhwIjoxNjk5OTU5NDg2fQ.o_KhU5tDSwNN_jj4u9cPUDH15EDdq8YNYY0tH-WQFLo
+
+
+###### creating new projects
+POST http://localhost:5200/project/
+Content-Type: application/json
+
+{
+    "project_name": "New Tour",
+    "description": "register now",
+    "endDate": "12/13/2023"
+}
+
+### fetching all projects
+GET http://localhost:5200/tour/
+
+
+### fetching all projects
+GET http://localhost:5200/project/763e48ed-5dbc-4401-b05d-3527828a1c61/
+
+# Deleting a project
+###
+DELETE http://localhost:5200/project/b5c6906b-3e90-44b8-b2dc-73dee6f3085a/
+
+
+### assigning a project to user
+POST http://localhost:5200/project/assign/user/
+Content-Type: application/json
+
+{
+"user_id":"fd171c31-84e8-4638-908f-85e5bd6ffc8b",
+"project_id":"763e48ed-5dbc-4401-b05d-3527828a1c61"
+}
+
+### marking it has complete
+POST http://localhost:5200/project/complete/2c788edf-34b3-47a6-85ef-951478a98eb3/
+Content-Type: application/json
+
+{}
