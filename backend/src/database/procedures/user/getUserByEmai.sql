@@ -1,3 +1,6 @@
+-- USE XTours;
+
+
 CREATE OR ALTER PROCEDURE getUserByEmail(
     @email VARCHAR(250)
 )

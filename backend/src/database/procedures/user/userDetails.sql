@@ -1,3 +1,6 @@
+-- USE XTours;
+
+
 CREATE OR ALTER PROCEDURE GetUserDetails(
     @userID VARCHAR(100)
 )

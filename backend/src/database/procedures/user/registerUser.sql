@@ -1,3 +1,5 @@
+-- USE XTours;
+
 CREATE OR ALTER PROCEDURE registerUser(
     @userID VARCHAR(100),
     @fullName VARCHAR(200),

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import mssql from 'mssql'
-import {sqlConfig} from '../config/sqlConfig'
+import {dbConfig} from '../config/sqlConfig'
 import Connection from '../dbHelpers/dbHelpers'
 import { Tour} from'../interfaces/interfaces'
 import { v4 as uuidv4 } from 'uuid';
@@ -38,7 +38,7 @@ export const addTour = async(req:Request, res: Response) =>{
 export const getAllTours = async(req:Request, res:Response)=>{
     try {
 
-        const pool = await mssql.connect(sqlConfig)
+        const pool = await mssql.connect(dbConfig)
 
         let tours = (await pool.request().execute('fetchAllTours')).recordset
 
@@ -58,7 +58,7 @@ export const getTourById = async (req: Request, res: Response) => {
     try {
         const tourID = req.params.tourID;
 
-        const pool = await mssql.connect(sqlConfig);
+        const pool = await mssql.connect(dbConfig);
 
         let tour = (await pool.request().input('tourID', tourID).execute('getTourById')).recordset[0];
 
@@ -77,7 +77,7 @@ export const editTour = async (req: Request, res: Response) => {
         const tourID = req.params.tourID;
         let {name, description, destination, startDate, endDate, price, duration, type } = req.body
 
-        const pool = await mssql.connect(sqlConfig);
+        const pool = await mssql.connect(dbConfig);
 
         await pool
             .request()
@@ -107,7 +107,7 @@ export const deleteTour = async (req: Request, res: Response) => {
     try {
         const tourID = req.params.tourID;
 
-        const pool = await mssql.connect(sqlConfig);
+        const pool = await mssql.connect(dbConfig);
 
         await pool.request().input('tourID', tourID).execute('deleteTour');
 

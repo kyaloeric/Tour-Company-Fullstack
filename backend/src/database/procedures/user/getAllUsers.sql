@@ -1,3 +1,4 @@
+-- USE XTours;
 CREATE OR ALTER PROCEDURE fetchAllUsers
 AS
 BEGIN
