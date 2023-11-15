@@ -1,5 +1,5 @@
 import mssql from 'mssql'
-import { dbConfig } from '../config/db'
+import { dbConfig } from '../config/sqlConfig'
 import { request } from 'express'
 
 export default class Connection{

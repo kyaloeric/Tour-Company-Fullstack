@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import { NextFunction, Request, Response } from 'express';
 dotenv.config();
 import jwt from 'jsonwebtoken'
-import { User } from '../types/interfaces';
+import { User } from '../interfaces/interfaces';
 
 export interface ExtendedUser extends Request{
     info?: User

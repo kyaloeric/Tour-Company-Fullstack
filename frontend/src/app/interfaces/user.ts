@@ -8,10 +8,8 @@ export interface User {
 
 
 export interface LoginResponse {
-    // userID(userID: any): unknown;
     token: string;
     userID:string
-    // Add other properties if needed
   }
 
   export interface userLogin {

@@ -2,6 +2,7 @@
 
 CREATE TABLE Tours(
     tourID VARCHAR(100) PRIMARY KEY,
+    image NVARCHAR(200),
     name VARCHAR(200) NOT NULL,
     description VARCHAR(300) NOT NULL,
     destination VARCHAR (250) NOT NULL,

@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 
 import cors from "cors"
 import userRouter from "./routes/userRoutes";
+import tour_router from "./routes/tourRoutes";
 
 
 dotenv.config()
@@ -12,6 +13,9 @@ const app=express();
 app.use(json());
 
 app.use(cors())
+
+
+app.use('/tours', tour_router)
 
 app.use('/users',userRouter)
 
