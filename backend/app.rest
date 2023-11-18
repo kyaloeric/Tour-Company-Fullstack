@@ -3,8 +3,8 @@ POST http://localhost:4000/users/register
 Content-Type: application/json
 
 {
-    "fullName": "Kyalo Eric",
-    "email": "ricskyalo2@gmail.com",
+    "fullName": "Eric  Kyalo",
+    "email": "erickyalo19@gmail.com",
     "password": "12345678"
 }
 
@@ -19,6 +19,7 @@ Content-Type: application/json
 }
 
 ### fetching users
+
 GET http://localhost:4000/users/
 token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjOGY3ZmE2ZS0wZGJjLTQ1MTYtOGM1ZC1kNjFiYzE0MmY0MzAiLCJmdWxsTmFtZSI6Ikt5YWxvIEVyaWMiLCJlbWFpbCI6InJpY3NreWFsbzJAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDAwNTA3OTksImV4cCI6MTcwMDIyMzU5OX0.jIZq28Ul-XZKl_paGhdnjwY0Ruwix_0U4lw_WErvxSA
 
@@ -39,38 +40,55 @@ token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjOGY3ZmE2ZS0wZGJjLTQ
 
 
 ###### creating new tours
-POST http://localhost:4000/tour 
+POST http://localhost:4000/tours/add
 Content-Type: application/json
 
 {
-    "project_name": "New Tour",
-    "description": "register now",
-    "endDate": "12/13/2023"
+    "name": "Saf Adventure",
+    "description": "Experience the thrill of a safari!",
+    "destination": "Serengeti National Park",
+    "price":  "1500",
+    "type": "Adventure",
+    "startDate": "2023-01-15",
+    "endDate": "2023-01-20",
+    "duration": "6 days"
 }
 
 ### fetching all tours 
-GET http://localhost:4000/tour/
+
+GET http://localhost:4000/tours
 
 
-### fetching all projects
-GET http://localhost:4000/project/763e48ed-5dbc-4401-b05d-3527828a1c61/
+#### editign tour
 
-# Deleting a project
+PUT http://localhost:4000/tours/editTour/13356d87-6274-40a9-8a7e-2ce606d91ce5
+Content-Type: application/json
+
+{
+    "name": "Saf Adventure",
+    "description": "Experience the thrill of a safari!",
+    "destination": "Serengeti National Park",
+    "price":  "1500",
+    "type": "Adventure",
+    "startDate": "2023-01-15",
+    "endDate": "2023-01-20",
+    "duration": "6 days"
+}
+
+### fetching tour by ID
+GET http://localhost:4000/tours/getTour/1c578b5f-324f-4c75-a5d5-c49777fb6244/
+
+# Deleting a tour
 ###
-DELETE http://localhost:4000/project/b5c6906b-3e90-44b8-b2dc-73dee6f3085a/
+DELETE http://localhost:4000/tours/delete/4328fef5-76f8-4b0e-a94a-a06ada12a948
 
 
-### assigning a project to user
+### assigning a tour to user
 POST http://localhost:4000/project/assign/user/
 Content-Type: application/json
 
 {
 "user_id":"fd171c31-84e8-4638-908f-85e5bd6ffc8b",
-"project_id":"763e48ed-5dbc-4401-b05d-3527828a1c61"
+"tour_id":"763e48ed-5dbc-4401-b05d-3527828a1c61"
 }
 
-### marking it has complete
-POST http://localhost:4000/project/complete/2c788edf-34b3-47a6-85ef-951478a98eb3/
-Content-Type: application/json
-
-{}

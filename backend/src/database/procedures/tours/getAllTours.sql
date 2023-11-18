@@ -1,7 +1,9 @@
 -- USE XTours;
 
-CREATE PROCEDURE fetchAllTours
+CREATE OR ALTER PROCEDURE fetchAllTours
 AS
 BEGIN
-    SELECT * FROM Tours;
+    SELECT *
+    FROM Tours
+    WHERE isDeleted = 0;
 END;

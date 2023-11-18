@@ -20,12 +20,12 @@ export const addTour = async(req:Request, res: Response) =>{
         let tourID = v4()
 
 
-        let result = dbhelper.execute('addTour', {
+        let result = dbhelper.execute('AddTour', {
             tourID, name, description, destination, startDate, endDate, price, duration, type 
         })
         
         return res.status(200).json({
-            message: 'project added successfully'
+            message: 'Tour added successfully'
         })
         
     } catch (error) {
@@ -34,6 +34,11 @@ export const addTour = async(req:Request, res: Response) =>{
         })
     }
 }
+
+
+
+
+
 
 export const getAllTours = async(req:Request, res:Response)=>{
     try {
@@ -54,54 +59,64 @@ export const getAllTours = async(req:Request, res:Response)=>{
 }
 
 
+
+
+
 export const getTourById = async (req: Request, res: Response) => {
     try {
         const tourID = req.params.tourID;
 
         const pool = await mssql.connect(dbConfig);
 
-        let tour = (await pool.request().input('tourID', tourID).execute('getTourById')).recordset[0];
+        let tour = (await pool.request().input('tourID', tourID).execute('getTourByID')).recordset[0];
 
         return res.status(200).json({
             tour: tour,
-        })
+        });
     } catch (error) {
         return res.json({
             error: error,
-        })
+        });
     }
 }
+
+
+
 
 export const editTour = async (req: Request, res: Response) => {
     try {
         const tourID = req.params.tourID;
-        let {name, description, destination, startDate, endDate, price, duration, type } = req.body
+        let { name, description, destination, startDate, endDate, price, duration, type } = req.body;
 
         const pool = await mssql.connect(dbConfig);
 
         await pool
             .request()
-            .input('name', name)
-            .input('tourID', tourID)
-            .input('description', description)
-            .input('destination', destination)
-            .input('startDate', startDate)
-            .input('isDeleted', 0)
-            .input('endDate', endDate)
-            .input('price', price)
-            .input('duration', duration)
-            .input('type', type)
+            .input('tourID', mssql.VarChar, tourID)
+            .input('name', mssql.VarChar, name)
+            .input('description', mssql.VarChar, description)
+            .input('destination', mssql.VarChar, destination)
+            .input('startDate', mssql.Date, startDate)
+            .input('endDate', mssql.Date, endDate)
+            .input('price', mssql.Decimal(10, 2), price)
+            .input('duration', mssql.VarChar, duration)
+            .input('type', mssql.VarChar, type)
             .execute('editTour');
 
         return res.status(200).json({
-            message:'project updated successfully '
+            message: 'Tour updated successfully',
         });
     } catch (error) {
         return res.json({
             error: error,
-        })
+        });
     }
-}
+};
+
+
+
+
+
 
 export const deleteTour = async (req: Request, res: Response) => {
     try {
@@ -109,7 +124,7 @@ export const deleteTour = async (req: Request, res: Response) => {
 
         const pool = await mssql.connect(dbConfig);
 
-        await pool.request().input('tourID', tourID).execute('deleteTour');
+        await pool.request().input('tourID', tourID).execute('softDeleteTour');
 
         return res.status(200).json({
             message: 'Tour  deleted successfully',
@@ -124,12 +139,15 @@ export const deleteTour = async (req: Request, res: Response) => {
 
 
 
+
+
+
 export const getMyTours = async(req:Request, res:Response)=>{
     try {
 
         const userID = req.params.userID;
         
-        let tours = dbhelper.execute('fetchMyProjects', {
+        let tours = dbhelper.execute('fetchMytours', {
                         userID
         })
 

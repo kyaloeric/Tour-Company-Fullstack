@@ -11,7 +11,7 @@ export class AuthService {
   
 
   constructor(private http:HttpClient,) { }
-  private apiUrl = 'http://localhost:4500/users';
+  private apiUrl = 'http://localhost:4000/users';
 
   registerUser(user:User){
     this.http.post(`${this.apiUrl}/register/`,user).subscribe(res=>{
@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   // async login(userLogins: User){
-  //   let response = await fetch('http://localhost:5200/users/login', {
+  //   let response = await fetch('http://localhost:4000/users/login', {
   //     headers:{
   //       "Content-Type": "application/json"
   //     },
@@ -83,7 +83,7 @@ export class AuthService {
   
   
   // loginUser(user:User){
-  //   this.http.post('http://localhost:4500/users/login/',user).subscribe(result=>{
+  //   this.http.post('http://localhost:4000/users/login/',user).subscribe(result=>{
   //     console.log(result)
   //     return result
   //   })

@@ -9,7 +9,6 @@ html {
   }
   
   
-  /*header section*/
   .hero_area {
   background-image: url('https://media.istockphoto.com/id/1013567206/photo/giraffes-army-running-at-wild-with-zebras-under-the-clouds.webp?s=2048x2048&w=is&k=20&c=RhW0Y_nKwr7bOGvENYDFobDpy0rAPrTfWSz5T0Izm_w=');
   background-size: cover;
@@ -378,7 +377,6 @@ html {
   
 
 
-  /*look for the brown color */
   .package_section {
     text-align: center;
     background: linear-gradient(to bottom, #dcdcdc, #a0a0a0);
@@ -506,7 +504,6 @@ html {
   }
   
   .about_section {
-    /* background-image: url(../images/about-bg.png); */
     background-size: 100% 60%;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -680,7 +677,6 @@ html {
   
   .client_section .carousel-control-prev .prev-icon,
   .client_section .carousel-control-next .prev-icon {
-    /* background-image: url(../images/prev.png); */
     width: 25px;
     height: 25px;
     background-size: 15px;
@@ -690,7 +686,6 @@ html {
   
   .client_section .carousel-control-prev .next-icon,
   .client_section .carousel-control-next .next-icon {
-    /* background-image: url(../images/next.png); */
     width: 25px;
     height: 25px;
     background-size: 15px;

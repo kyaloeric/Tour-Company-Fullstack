@@ -8,11 +8,11 @@ tour_router.post('/add', addTour);
 
 tour_router.put("/editTour/:tourID", editTour);
 tour_router.delete("/delete/:tourID", deleteTour);
-tour_router.delete("/getTour/:tourID", getTourById);
+tour_router.get("/getTour/:tourID", getTourById);
 
 
-tour_router.get("/allTours", getAllTours);
-tour_router.get("/my_projects/:id", getMyTours);
+tour_router.get("/", getAllTours);
+tour_router.get("/my_tours/:id", getMyTours);
 
 
 

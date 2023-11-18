@@ -1,8 +1,8 @@
 -- USE XTours;
 
 
-
-CREATE PROCEDURE AddTour
+CREATE OR ALTER PROCEDURE AddTour
+    @tourID VARCHAR(200),
     @name VARCHAR(200),
     @description VARCHAR(300),
     @destination VARCHAR(250),
@@ -13,6 +13,6 @@ CREATE PROCEDURE AddTour
     @duration VARCHAR(100)
 AS
 BEGIN
-    INSERT INTO Tours (name, description, destination, price, type, startDate, endDate, duration)
-    VALUES (@name, @description, @destination, @price, @type, @startDate, @endDate, @duration);
+    INSERT INTO Tours (tourID, name, description, destination, price, type, startDate, endDate, duration)
+    VALUES (@tourID, @name, @description, @destination, @price, @type, @startDate, @endDate, @duration);
 END;

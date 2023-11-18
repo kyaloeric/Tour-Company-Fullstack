@@ -1,54 +1,131 @@
+
 <div class="min-h-full">
   <app-navbar></app-navbar>
-    <header class="bg-white shadow">
-      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-      </div>
-    </header>
-    <main>
-      <div class="mx-auto flex justify-between max-w-7xl py-6 sm:px-6 lg:px-8">
-        <div>
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Tours</h1>
-        </div>
-        <div>
+  
+  <header class="bg-white shadow flex justify-between">
+    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8  ">
+      <h1 class="text-2xl font-bold ml-20vw tracking-tight text-gray-900"> Admin Page</h1>
+    </div>
+    <div>
+      <main>
+        <div class="mx-auto flex justify-between max-w-7xl py-6 sm:px-6 lg:px-8">
+          <div>
+            <button type="button" class="text-white ml-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" (click)="toggleTourTable()">
+              {{ showTourTable ? 'Hide Tour Table' : 'Show Tour Table' }}
+            </button>
+             
+            
             <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" (click)="visible = !visible">Create Tour</button>
+          </div>
         </div>
-      </div>
-    </main>
-  </div>
-  <div *ngIf = "!visible" class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-  
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-  
-    <div class="fixed inset-0 overflow-hidden">
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+      </main>
       
-          <div class="pointer-events-auto relative w-screen max-w-md">
-         
-            <div class="absolute left-0 top-0 -ml-8 flex pr-2 pt-4 sm:-ml-10 sm:pr-4">
-              <button (click)="visible=!visible" type="button" class="relative rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
-                <span class="absolute -inset-2.5"></span>
-                <span class="sr-only">Close panel</span>
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-  
-            <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
-              <div class="px-4 sm:px-6">
-                <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">Panel title</h2>
-              </div>
-              <div class="relative mt-6 flex-1 px-4 sm:px-6">
-              </div>
-              
-              <app-tours></app-tours>
+    </div>
+    
+  </header>
+
+  <div *ngIf="showTourTable">
+    <app-tour-table [tours]="tours" (editTour)="editTour($event)" (deleteTour)="deleteTour($event)"></app-tour-table>
+  </div>
+
+
+  <app-tours></app-tours>
+
+  <!-- <div *ngIf="showTourTable">
+    <app-tour-table [tours]="tours" (editTour)="editTour($event)" (deleteTour)="deleteTour($event)"></app-tour-table>
+  </div> -->
+
+
+ 
+
+ 
+</div>
+
+<div *ngIf="visible" class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <!-- Background overlay, show/hide based on modal state. -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" (click)="visible = !visible"></div>
+
+    <!-- This element is to trick the browser into centering the modal contents. -->
+    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+
+
+    <!-- Modal panel, show/hide based on modal state. -->
+    <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-md sm:w-full">
+      <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="sm:flex sm:items-start">
+          <div class="mt-3 text-left sm:mt-0 sm:ml-4 sm:text-left w-full">
+            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+              Create New Tour
+            </h3>
+            <div class="mt-2">
+              <!-- Form sections for creating a new tour -->
+              <form [formGroup]="tourForm" (ngSubmit)="createTour()">                
+                <div class="mb-4">
+                  <label for="name" class="block text-sm font-medium text-gray-900">Tour Name</label>
+                  <input type="text" formControlName="name" id="name" name="name" class=" text-gray-900  p-2 w-full border rounded-md">
+                </div>
+
+                <div class="mb-4 text-left w-full" >
+                  <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>                                   
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Choose a Start Date</mat-label>
+                    <input matInput [matDatepicker]="startDatePicker" readonly  formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker startView="year" [startAt]="startDate"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+                
+                <div class="mb-4 text-left">
+                  <label for="endDate" class="block text-sm font-medium text-gray-700">End Date</label>
+                  <mat-form-field appearance="fill" class="w-full">
+                    <mat-label>Choose an End Date</mat-label>
+                    <input matInput [matDatepicker]="endDatePicker" readonly  formControlName="startDate">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker startView="year" [startAt]="endDate"></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="mb-4">
+                  <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                  <textarea id="description" formControlName="description" name="description" rows="3" class="text-gray-900 mt-1 p-2 w-full border rounded-md"></textarea>
+                </div>
+
+                <div class="mb-4">
+                  <label for="destination" class="block text-sm font-medium text-gray-700">Destination</label>                  
+                  <input type="text" formControlName="destination" id="destination" name="destination" class="text-gray-900 mt-1 p-2 w-full border rounded-md">
+                </div>
+
+                <div class="mb-4">
+                  <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+                  <input type="text" formControlName="price" id="price" name="price" class="text-gray-900 mt-1 p-2 w-full border rounded-md">
+                </div>
+
+                <div class="mb-4">
+                  <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
+                  <input type="text" formControlName="type" id="type" name="type" class="text-gray-900 mt-1 p-2 w-full border rounded-md">
+                </div>
+
+                <div class="mb-4">
+                  <label for="duration" class="block text-sm font-medium text-gray-700">Duration</label>
+                  <input type="text" formControlName="duration" id="duration" name="duration" class="text-gray-900 mt-1 p-2 w-full border rounded-md">
+                </div>
+
+                <div class="mt-3 ">
+                  <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md">Submit</button>                  
+                </div>
+              </form>
+
             </div>
           </div>
         </div>
       </div>
+      <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <button type="button" (click)="visible = !visible" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 sm:ml-3 sm:w-auto sm:text-sm">
+          Close
+        </button>
+      </div>
     </div>
   </div>
-  <app-tours></app-tours>
-  
+</div>

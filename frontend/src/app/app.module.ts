@@ -16,8 +16,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { SearchComponent } from './search/search.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TourTableComponent } from './tour-table/tour-table.component';
+
 
 @NgModule({
   declarations: [
@@ -33,8 +38,7 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     NotFoundComponent,
     AboutusComponent,
     SearchComponent,
-    AdminDashboardComponent,
-    UserDashboardComponent,
+    TourTableComponent,
     
   ],
   imports: [
@@ -42,6 +46,11 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

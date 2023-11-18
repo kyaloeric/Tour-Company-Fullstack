@@ -1,0 +1,26 @@
+
+<div *ngIf="tours.length > 0" class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Tour Name</th>
+        <th>Description</th>
+        <th>Destination</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tour of tours">
+        <td>{{ tour.name }}</td>
+        <td>{{ tour.description }}</td>
+        <td>{{ tour.destination }}</td>
+        <td>{{ tour.price }}</td>
+        <td>
+          <button class="edit-button" (click)="editTour.emit(tour)">Edit</button>
+          <button class="delete-button" (click)="deleteTour.emit(tour.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
