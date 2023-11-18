@@ -21,12 +21,30 @@ export interface Tour{
 export interface TourBookingInput {
     userId: string;
     tourId: string;
-  }
+}
   
- export interface TourReviewInput {
+  
+export interface TourReviewInput {
     userId: string;
     tourId: string;
     rating: number;
     comment: string;
-  }
-  
+}
+
+
+export interface reviewDetails {
+    reviewID: string;
+    reviewContent: string;
+    [key: string]: string;
+}
+
+
+export interface bookingDetails {
+    tourID:string
+    userID:string
+    totalprice:number
+    totalBookCount:string
+    bookID:number
+    [key: string]: string | number
+}
+

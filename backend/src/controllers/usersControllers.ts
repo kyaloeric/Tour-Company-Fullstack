@@ -2,7 +2,7 @@ import {Request,Response, json} from 'express';
 import Connection from '../dbHelpers/dbHelpers';
 import { v4 } from 'uuid'
 import bcrypt from 'bcrypt'
-import { regUserValidation } from '../validators/validators';
+import { regUserValidation, userLoginValidationSchema } from '../validators/validators';
 import { comparedPass } from '../utils/comparedPass';
 import { ExtendedUser, verifyToken } from '../middlewares/verifyToken';
 import { tokenGenerator } from '../utils/generateToken';
@@ -53,35 +53,83 @@ try{
 }
 
 
-export const loginUser=async (req:Request,res:Response)=>{
-    const { email, password }=req.body;
+// export const loginUser=async (req:Request,res:Response)=>{
+//     const { email, password }=req.body;
 
-    const checkEmailResult=await dbhelpers.execute('getUserByEmail',{email});
+//     const checkEmailResult=await dbhelpers.execute('getUserByEmail',{email});
 
-    const existingUserWithEmail=checkEmailResult.recordset;
-    const user=existingUserWithEmail[0]
+//     const existingUserWithEmail=checkEmailResult.recordset;
+//     const user=existingUserWithEmail[0]
 
-    if(user){
+//     if(user){
 
-        const validPass=await comparedPass(password,user.password)
-        const token=tokenGenerator(
-            user.userID,
-            user.fullName,
-            user.email,
-            user.role
-        )
+//         const validPass=await comparedPass(password,user.password)
+//         const token=tokenGenerator(
+//             user.userID,
+//             user.fullName,
+//             user.email,
+//             user.role
+//         )
 
-        return res.json({
-            message:"logged in successfully",
-            token
-        })
+//         return res.json({
+//             message:"logged in successfully",
+//             token
+//         })
 
-    }else{
-        return res.status(404).json({
-            error:"Account does not exist"
-        })
+//     }else{
+//         return res.status(404).json({
+//             error:"Account does not exist"
+//         })
+//     }
+// }
+
+
+export const loginUser = async (req: Request, res: Response) => {
+    const { error } = userLoginValidationSchema.validate(req.body);
+  
+    if (error) {
+      return res.status(400).json({
+        error: error.details[0].message,
+      });
     }
-}
+  
+    const { email, password } = req.body;
+  
+    const checkEmailResult = await dbhelpers.execute('getUserByEmail', { email });
+  
+    const existingUserWithEmail = checkEmailResult.recordset;
+    const user = existingUserWithEmail[0];
+  
+    if (user) {
+      const validPass = await bcrypt.compare(password, user.password);
+  
+      if (validPass) {
+        const token = tokenGenerator(
+          user.userID,
+          user.fullName,
+          user.email,
+          user.role
+        );
+  
+        return res.json({
+          message: 'Logged in successfully',
+          token,
+        });
+      } else {
+        return res.status(401).json({
+          error: 'Invalid password',
+        });
+      }
+    } else {
+      return res.status(404).json({
+        error: 'Account does not exist',
+      });
+    }
+  };
+
+
+  
+
 
 export const checkCredentials=(req:ExtendedUser,res:Response)=>{
     if(req.info){
@@ -90,6 +138,8 @@ export const checkCredentials=(req:ExtendedUser,res:Response)=>{
         })
     }
 }
+
+
 
 
 export const getUserDetails=async(req:Request,res:Response)=>{
