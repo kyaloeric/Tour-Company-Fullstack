@@ -1,9 +1,14 @@
--- -- USE XTours;
+-- USE XTours;
 -- CREATE TABLE Reviews(
+--     reviewID VARCHAR(100) PRIMARY KEY,
 --     userID VARCHAR(100) FOREIGN KEY REFERENCES Users(userID),
 --     tourID VARCHAR(100) FOREIGN KEY REFERENCES Tours(tourID),
---     rating INT NOT NULL,
---     comment VARCHAR(400) NOT NULL
+--     reviewComment VARCHAR(400) NOT NULL
 -- )
 
--- -- SELECT * from Reviews;
+SELECT * from Reviews;
+
+-- DROP TABLE Reviews;
+
+ ALTER TABLE Reviews
+ ADD isDeleted BIT NOT NULL DEFAULT 0;

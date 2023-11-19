@@ -21,8 +21,7 @@ Content-Type: application/json
 ### fetching users
 
 GET http://localhost:4000/users/
-token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjOGY3ZmE2ZS0wZGJjLTQ1MTYtOGM1ZC1kNjFiYzE0MmY0MzAiLCJmdWxsTmFtZSI6Ikt5YWxvIEVyaWMiLCJlbWFpbCI6InJpY3NreWFsbzJAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDAwNTA3OTksImV4cCI6MTcwMDIyMzU5OX0.jIZq28Ul-XZKl_paGhdnjwY0Ruwix_0U4lw_WErvxSA
-
+token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjOGY3ZmE2ZS0wZGJjLTQ1MTYtOGM1ZC1kNjFiYzE0MmY0MzAiLCJmdWxsTmFtZSI6Ikt5YWxvIEVyaWMiLCJlbWFpbCI6InJpY3NreWFsbzJAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDAzODcyNjgsImV4cCI6MTcwMDU2MDA2OH0.Ou7nEvAEOMNAG1ujAJM3P89C716To8-H-muog9OwdxQ
 ### fetching user by ID
 GET http://localhost:4000/users/details/c8f7fa6e-0dbc-4516-8c5d-d61bc142f430/
 token:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJjOGY3ZmE2ZS0wZGJjLTQ1MTYtOGM1ZC1kNjFiYzE0MmY0MzAiLCJmdWxsTmFtZSI6Ikt5YWxvIEVyaWMiLCJlbWFpbCI6InJpY3NreWFsbzJAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDAwNTA3OTksImV4cCI6MTcwMDIyMzU5OX0.jIZq28Ul-XZKl_paGhdnjwY0Ruwix_0U4lw_WErvxSA
@@ -92,3 +91,87 @@ Content-Type: application/json
 "tour_id":"763e48ed-5dbc-4401-b05d-3527828a1c61"
 }
 
+
+
+### REVIEWS ENDPOINTS
+
+
+###Addreview
+POST http://localhost:4000/review/addReview
+Content-Type: application/json
+
+{
+   "reviewComment": "Last one pays ",
+    "userID":"7e2a230f-7c3b-487b-bd81-d5b45d4a15b2",
+    "tourID":"0d6145bc-70e7-4366-ae00-e7d83973299b"
+
+}
+
+
+
+
+###Get all Reviews
+GET http://localhost:4000/review/getAllReviews
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI5YTA1NTQzMC01YTcxLTQ2NDUtYjk0OS1kMzg3MzIyNDQyNjkiLCJ1c2VyTmFtZSI6IlNhbmRyYSBDaGVnZSIsImVtYWlsIjoiOXN1cGVyYmlrZXNAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaXNEZWxldGVkIjpmYWxzZSwicmVzZXRQYXNzd29yZCI6ZmFsc2UsIldlbGNvbWVkIjpmYWxzZSwiaWF0IjoxNzAwMTMxOTY2LCJleHAiOjE3MDAyMTgzNjZ9.etDW05XqmUBgDoayIWICNrY3LnHumbZ0gSlGwhejims
+
+###Get one review
+GET http://localhost:4000/review/getOneReview
+Content-Type: application/json
+
+{
+    "reviewID":"32035b6d-dd58-4a08-9a3b-5c1e2dc5e524"
+}
+
+###updateReview
+Put http://localhost:4000/review/updateReview
+Content-Type: application/json
+
+{   
+    "reviewID":"32035b6d-dd58-4a08-9a3b-5c1e2dc5e524",
+    "reviewComment": "Pwani si ya mambo mingi"
+}
+
+###DELETE REVIEW
+DELETE http://localhost:4000/review/deleteReview/5659aeec-793e-44fa-aef4-ff1f10530df4
+
+
+
+
+### BOOKING ENDPOINTS
+
+###Add BOOKING
+POST http://localhost:4000/booking/addBooking
+Content-Type: application/json
+
+{
+    "tourID":"0d6145bc-70e7-4366-ae00-e7d83973299b",
+    "totalprice":"6700",
+    "totalBookCount":"14",
+    "userID":"7e2a230f-7c3b-487b-bd81-d5b45d4a15b2"
+    
+}
+
+
+##get all bookings
+###
+
+GET http://localhost:4000/booking/getAllBookings
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI5YTA1NTQzMC01YTcxLTQ2NDUtYjk0OS1kMzg3MzIyNDQyNjkiLCJ1c2VyTmFtZSI6IlNhbmRyYSBDaGVnZSIsImVtYWlsIjoiOXN1cGVyYmlrZXNAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaXNEZWxldGVkIjpmYWxzZSwicmVzZXRQYXNzd29yZCI6ZmFsc2UsIldlbGNvbWVkIjpmYWxzZSwiaWF0IjoxNzAwMTMxOTY2LCJleHAiOjE3MDAyMTgzNjZ9.etDW05XqmUBgDoayIWICNrY3LnHumbZ0gSlGwhejims
+
+###get one single booking 
+GET http://localhost:4000/booking/getOneBooking/aba0df99-adde-4fe4-aa4e-e4028e3dd70f
+
+# {
+#     "bookID":"aba0df99-adde-4fe4-aa4e-e4028e3dd70f"
+# }
+
+###updatebooking
+PUT http://localhost:4000/booking/updateBooking
+Content-Type: application/json
+
+{   "bookID": "aba0df99-adde-4fe4-aa4e-e4028e3dd70f",
+    "tourID":"0d6145bc-70e7-4366-ae00-e7d83973299b",
+    "totalprice":"70000",
+    "totalBookCount":"25",
+    "userID":"7e2a230f-7c3b-487b-bd81-d5b45d4a15b2"
+}

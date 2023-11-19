@@ -1,0 +1,9 @@
+-- USE XTours;
+
+CREATE OR ALTER PROCEDURE getBookingByID
+	@bookID VARCHAR(100)
+AS
+BEGIN
+    SELECT * FROM Bookings
+    WHERE bookID = @bookID
+END

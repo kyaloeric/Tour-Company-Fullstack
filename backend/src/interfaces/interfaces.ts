@@ -34,7 +34,7 @@ export interface TourReviewInput {
 
 export interface reviewDetails {
     reviewID: string;
-    reviewContent: string;
+    reviewComment: string;
     [key: string]: string;
 }
 

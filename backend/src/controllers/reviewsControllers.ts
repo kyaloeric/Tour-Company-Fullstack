@@ -12,9 +12,9 @@ const dbhelper = new Connection
 
 
 
-export const newreview = async (req: Request, res: Response) => {
+export const addReview = async (req: Request, res: Response) => {
   try {
-    let { reviewContent, userID, tourID } = req.body;
+    let { reviewComment, userID, tourID } = req.body;
 
 
     const { error } = addreviewValidationSchema.validate(req.body);
@@ -24,8 +24,8 @@ export const newreview = async (req: Request, res: Response) => {
     }
 
     let reviewID = v4();
-    const procedureName2 = "addreviews";
-    const params = {reviewID, reviewContent, userID, tourID,
+    const procedureName2 = "addReviews";
+    const params = {reviewID, reviewComment, userID, tourID,
     };
     console.log(params);
 
@@ -38,6 +38,8 @@ export const newreview = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+
+
 
 export const getAllReviews = async (req: ExtendedUser, res: Response) => {
   try {
@@ -61,7 +63,7 @@ export const getReview = async (req: Request, res: Response) => {
 
     if (error) return res.send({ message: error.details[0].message });
 
-    const procedureName = "getReviewById";
+    const procedureName = "getReviewByID";
     const result = await dbhelper.execute(procedureName, { reviewID });
 
     res.json(result.recordset[0]);
@@ -73,12 +75,12 @@ export const getReview = async (req: Request, res: Response) => {
 
 export const updateReviewDetails = async (req: Request, res: Response) => {
     try {
-      const { reviewID, reviewContent } = req.body;
+      const { reviewID, reviewComment } = req.body;
   
-      if (reviewID || reviewContent) {
+      if (reviewID || reviewComment) {
         const updatereviewDetails: reviewDetails = {
           reviewID,
-          reviewContent,
+          reviewComment,
         };
   
         const updatereviewprocedureName = "updateReviewDetails";

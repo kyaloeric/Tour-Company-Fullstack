@@ -24,7 +24,7 @@ export const createBooking = async (req: Request, res: Response) => {
     }
     let bookID = v4();
 
-    const procedureName2 = "createnewbookings";
+    const procedureName2 = "createNewBooking";
 
     const params = {tourID, userID, totalprice, totalBookCount, bookID,
     };
@@ -58,12 +58,10 @@ export const getBooking = async (req: Request, res: Response) => {
 
     if (error) return res.send({ message: error.details[0].message });
 
-    const procedureName = "getBookingById";
-    const result = dbhelper.execute(procedureName, { bookID });
+    const procedureName = "getBookingByID";
+    const result = await dbhelper.execute(procedureName, { bookID });
 
-    return res.status(200).json({
-        message: 'Booking added successfully'
-    })
+    return res.json(result.recordset);
   } catch (error) {
     console.log(error);
   }
@@ -80,7 +78,7 @@ export const updateBookingDetails = async (req: Request, res: Response) => {
       const updatebookingDetails: bookingDetails = {tourID, userID, totalprice, totalBookCount, bookID,
       };
 
-      const updatebookingprocedureName = "updatebookingDetails";
+      const updatebookingprocedureName = "updateBookingDetails";
       const params = updatebookingDetails;
 
       dbhelper.execute(updatebookingprocedureName, params)
@@ -113,7 +111,7 @@ export const deleteBooking = async (req: Request, res: Response) => {
 
     console.log(result.recordset);
 
-    res.send({ message: "booking deleted successfuly" });
+    res.send({ message: "Booking deleted successfuly" });
   } catch (error) {
     return res.status(500).json({
       message: error,

@@ -1,6 +1,6 @@
 import Router from "express";
 import {
-  newreview,
+  addReview,
   getAllReviews,
   getReview,
   deleteReview,
@@ -9,10 +9,10 @@ import {
 
 const review_router = Router();
 
-review_router.post("/addreview", newreview);
-review_router.get("/getallreviews", getAllReviews);
-review_router.get("/getonereview", getReview);
-review_router.put("/updatereview", updateReviewDetails);
-review_router.delete("/deletereview/:reviewID", deleteReview);
+review_router.post("/addReview", addReview);
+review_router.get("/getAllReviews", getAllReviews);
+review_router.get("/getOneReview", getReview);
+review_router.put("/updateReview", updateReviewDetails);
+review_router.delete("/deleteReview/:reviewID", deleteReview);
 
 export default review_router;
