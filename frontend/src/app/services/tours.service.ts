@@ -25,8 +25,8 @@ export class TourService {
     return this.http.get(`${this.baseUrl}/tours`, { headers: this.headers });
   }
 
-  getTourById(tourId: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}/tours/getTour/${tourId}`, { headers: this.headers }).pipe(
+  getTourById(tourID: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/tours/getTour/${tourID}`, { headers: this.headers }).pipe(
       catchError((error) => {
         if (error.status === 404) {
           return throwError(()=>'Tour not found');
@@ -36,12 +36,12 @@ export class TourService {
     );
   }
 
-  deleteTour(tourId: string): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/tours/delete/${tourId}`, { headers: this.headers });
+  deleteTour(tourID: string): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/tours/delete/${tourID}`, { headers: this.headers });
   }
 
-  editTour(tourId: string, tour: TourDetails): Observable<any> {
-    return this.http.put(`${this.baseUrl}/tours/editTour/${tourId}`, tour, { headers: this.headers });
+  editTour(tourID: string, tour: TourDetails): Observable<any> {
+    return this.http.put(`${this.baseUrl}/tours/editTour/${tourID}`, tour, { headers: this.headers });
   }
 
   private checkTourExistsByName(tourName: string): Observable<boolean> {

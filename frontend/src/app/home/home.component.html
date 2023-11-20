@@ -15,7 +15,7 @@
               dummy text of the printing and typesetting industry. Lorem Ipsum has been thedummy text of the printing and typesetting industry. Lorem Ipsum has been the
             </p> -->
             <div>
-              <a href="#">
+              <a href="/tours">
                 Book now
               </a>
             </div>
@@ -84,6 +84,31 @@
 
 
 
+  <section class="package_section layout_padding-top">
+    <div class="container">
+      <div class="flex items-center justify-center">
+        <h2 class="text-4xl text-white-800 font-bold mt-8">
+          Special Offers & Discounts!
+        </h2>
+      </div>
+  
+      <div class="package_container">
+        <div *ngFor="let tour of tours" class="box">
+          <div class="detail-box">
+            <h4>{{ tour.name }}</h4>
+            <div class="price_detail">
+              <h5>Ksh {{ tour.price }}</h5>
+              <p>{{ tour.description }}</p>
+            </div>
+            <a href="#">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- 
   <section class="package_section layout_padding-top ">
    
     <div class="container">
@@ -207,10 +232,51 @@
         </div>
       </div>
     </div>
+  </section> -->
+
+
+
+  <section class="client_section h-screen">
+    <div class="container">
+      <div class="heading_container text-center mt-10">
+        <h2 class="text-gray-800 font-semibold">What Customers say about us!</h2>
+        <p class="text-gray-800 font-semibold">
+          Tourism is a major source of income, lorem ipsum now is just a good day
+        </p>
+      </div>
+    </div>
+  
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+
+        <div *ngFor="let review of reviews; let i = index" class="carousel-item" [class.active]="i === 0">          
+          <div class="container">
+            <div class="client_container">
+              <div class="client_box b-1">
+                <div class="client-id">
+                  <div class="name">
+                    <h5>{{ review.userDetails?.fullName }}</h5>
+                    <p>{{ review.userDetails?.role }}</p>
+                  </div>
+                </div>
+                <div class="detail">
+                  <p>{{ review.reviewComment }}</p>
+                  <div>
+                    <div class="arrow_img"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+  
 
 
-  <section class="client_section  h-screen ">
+
+  <!-- <section class="client_section  h-screen ">
     <div class="container">
       <div class="heading_container text-center mt-10"  >
         <h2 class="text-gray-800 font-semibold" >
@@ -399,7 +465,7 @@
 
 
 
-  </section>
+  </section> -->
 
 
 

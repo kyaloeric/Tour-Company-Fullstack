@@ -50,7 +50,7 @@ export class LoginComponent {
   
         this.userService.checkDetails().subscribe(
           (role) => {
-            console.log('User role:', role); 
+            // console.log('User role:', role); 
   
             this.loggedInState = true;
             this.successMessage = 'Logged in successfully.';

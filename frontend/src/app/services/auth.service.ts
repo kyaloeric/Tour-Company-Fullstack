@@ -8,6 +8,9 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+  getToken() {
+    throw new Error('Method not implemented.');
+  }
   
 
   constructor(private http:HttpClient,) { }
@@ -54,16 +57,22 @@ export class AuthService {
   // }
 
 
-  getUserDetails(userID: string): Observable<any> {
-  
+  // getUserDetails(userIDs: string[]): Observable<any> {  
+  //   const token = localStorage.getItem('token');
+
+  //   console.log('Headers:', new HttpHeaders().set('Authorization', `Bearer ${token}`));
+  //   const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
+
+    
+  //   return this.http.get(`${this.apiUrl}/details/${userIDs}`, { headers });
+  // }
+
+
+  getUserDetails(userID: string[]): Observable<any> {
     const token = localStorage.getItem('token');
-
-    
     const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
-
-    
-    return this.http.get(`${this.apiUrl}/details/${userID}`, { headers });
-  }
+    const url = `${this.apiUrl}/details/${userID.join(',')}`;
+    return this.http.get(url, { headers });  }
 
   isLoggedIn(): boolean {
     // Check if there is a token in local storage

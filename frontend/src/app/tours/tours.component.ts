@@ -40,7 +40,11 @@ import { Component, OnInit } from '@angular/core';
 import { TourService } from '../services/tours.service';
 import { AuthService } from '../services/auth.service'; 
 import { UsersService } from '../services/users.service';
-
+import { AdminComponent } from '../dashboard/admin/admin.component';
+import { NavbarService } from '../services/navbar.service';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 @Component({
   selector: 'app-tours',
   templateUrl: './tours.component.html',
@@ -50,12 +54,13 @@ export class ToursComponent implements OnInit {
   tours: any[] = [];
   showNavbar: boolean = true;
 
-  constructor(private tourService: TourService, private authService: AuthService, private userService: UsersService) {}
+  constructor(private tourService: TourService,  private route: ActivatedRoute, private navbarService: NavbarService, private authService: AuthService, private userService: UsersService) {}
 
   ngOnInit(): void {
     this.loadTours();
     this.checkUserRole();
-  }
+
+    this.navbarService.setShowNavbar(true);   }
 
   loadTours() {
     this.tourService.getTours().subscribe(
@@ -71,10 +76,12 @@ export class ToursComponent implements OnInit {
       }
     );
   }
+
+  
   checkUserRole() {
     this.userService.checkDetails().subscribe(
       (role) => {
-        console.log('User role:', role);
+        // console.log('User role:', role);
   
         this.showNavbar = role !== 'admin';
       },
@@ -83,4 +90,16 @@ export class ToursComponent implements OnInit {
       }
     );
   }
+
+
+  checkUserRole1(): Observable<boolean> {
+  return this.userService.checkDetails().pipe(
+    map((role) => {
+      // console.log('User role:', role);
+      return role === 'user';
+    })
+  );
 }
+  
+}
+

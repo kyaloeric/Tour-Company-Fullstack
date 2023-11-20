@@ -13,16 +13,14 @@ import { AuthService } from 'src/app/services/auth.service';
 export class UserComponent implements OnInit{
   userDetails!: User;
   
+  
 
   constructor(private authService: AuthService, private route: ActivatedRoute) {}
- 
   ngOnInit() {
-    
-    // Get the userID from the route parameters
     const userID = this.route.snapshot.paramMap.get('userID');
-
+  
     if (userID) {
-      this.authService.getUserDetails(userID).subscribe(
+      this.authService.getUserDetails([userID]).subscribe(
         (userDetails) => {
           this.userDetails = userDetails;
         },
@@ -34,5 +32,5 @@ export class UserComponent implements OnInit{
       console.error('userID is null.');
     }
   }
-  }
-
+  
+}

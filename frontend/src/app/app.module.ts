@@ -22,6 +22,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TourTableComponent } from './tour-table/tour-table.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { BookingComponent } from './booking/booking.component';
 
 
 @NgModule({
@@ -39,6 +41,8 @@ import { TourTableComponent } from './tour-table/tour-table.component';
     AboutusComponent,
     SearchComponent,
     TourTableComponent,
+    ReviewsComponent,
+    BookingComponent,
     
   ],
   imports: [

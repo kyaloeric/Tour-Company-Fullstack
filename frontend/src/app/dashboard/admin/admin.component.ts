@@ -19,7 +19,7 @@ export class AdminComponent {
   endDate!: Date; 
   tours: any[] = [];
   showTourTable = false;
-  editingTourId: any;
+  editingTourID: any;
 
   constructor(private fb: FormBuilder, private tourService: TourService) {
     this.tourForm = this.fb.group({
@@ -85,8 +85,8 @@ export class AdminComponent {
     );
   }
 
-  getTourById(tourId: string): void {
-    this.tourService.getTourById(tourId).subscribe(
+  getTourById(tourID: string) {
+    this.tourService.getTourById(tourID).subscribe(
       (response) => {
         console.log(response);
       },
@@ -96,8 +96,8 @@ export class AdminComponent {
     );
   }
 
-  deleteTour(tourId: string): void {
-    this.tourService.deleteTour(tourId).subscribe(
+  deleteTour(tourID: string) {
+    this.tourService.deleteTour(tourID).subscribe(
       (response) => {
         console.log(response);
       },
@@ -113,7 +113,7 @@ export class AdminComponent {
   }
 
   editTour(tour: any) {
-    this.editingTourId = tour.id; 
+    this.editingTourID = tour.tourID; 
     this.tourForm.patchValue(tour); 
     this.visible = true; 
   }

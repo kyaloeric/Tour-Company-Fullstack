@@ -49,23 +49,54 @@ export const getAllBookings = async (req: ExtendedUser, res: Response) => {
   }
 };
 
+
+
+
 export const getBooking = async (req: Request, res: Response) => {
   try {
-    const { bookID } = req.body;
-    if (!bookID) return res.status(400).send({ message: `Id is ${bookID}` });
+    const { bookID } = req.params;
 
-    const { error } = validateBookID.validate(req.body);
+    if (!bookID) {
+      return res.status(400).send({ message: "BookID is required" });
+    }
 
-    if (error) return res.send({ message: error.details[0].message });
+    const { error } = validateBookID.validate({ bookID }); 
+
+    if (error) {
+      return res.status(400).send({ message: error.details[0].message });
+    }
 
     const procedureName = "getBookingByID";
     const result = await dbhelper.execute(procedureName, { bookID });
 
-    return res.json(result.recordset);
+    if (!result.recordset.length) {
+      return res.status(404).send({ message: "Booking not found" });
+    }
+
+    return res.json(result.recordset[0]); 
   } catch (error) {
     console.log(error);
+    res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// export const getBooking = async (req: Request, res: Response) => {
+//   try {
+//     const {bookID}  = req.body;
+//     if (!bookID) return res.status(400).send({ message: `Id is ${bookID}` });
+
+//     const { error } = validateBookID.validate(req.body);
+
+//     if (error) return res.send({ message: error.details[0].message });
+
+//     const procedureName = "getBookingByID";
+//     const result = await dbhelper.execute(procedureName, { bookID });
+
+//     return res.json(result.recordset);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 
 
