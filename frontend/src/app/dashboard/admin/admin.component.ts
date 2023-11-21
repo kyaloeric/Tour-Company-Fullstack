@@ -34,6 +34,8 @@ export class AdminComponent {
     });
   }
 
+
+  
   createTour() {
     console.log('Form values:', this.tourForm.value);
   
@@ -44,12 +46,17 @@ export class AdminComponent {
         console.log('Tour created successfully:', response);
         this.tourForm.reset();
         this.visible = false;
+  
       },
       (error) => {
         console.error('Error creating tour:', error);
       }
-    );
+      );
+  
+    this.loadTours();
   }
+  
+  
   
 
   ngOnInit(): void {
@@ -62,6 +69,7 @@ export class AdminComponent {
       (data) => {
         if (data && data.hasOwnProperty('tours') && Array.isArray(data.tours)) {
           this.tours = data.tours;
+          console.log('Tours loaded successfully:', this.tours);
         } else {
           console.error('Invalid API response format. Expected an object with a "tours" property.');
         }
@@ -71,8 +79,14 @@ export class AdminComponent {
       }
     );
   }
+  
 
 
+
+  submitTour() {
+    this.createTour();
+    this.loadTours();
+  }
 
   getTours(): void {
     this.tourService.getTours().subscribe(
@@ -100,12 +114,15 @@ export class AdminComponent {
     this.tourService.deleteTour(tourID).subscribe(
       (response) => {
         console.log(response);
+        // After successful deletion, reload the tours
+        this.loadTours();
       },
       (error) => {
         console.error(error);
       }
     );
   }
+  
 
 
   toggleTourTable() {

@@ -68,10 +68,10 @@ export class AuthService {
   // }
 
 
-  getUserDetails(userID: string[]): Observable<any> {
+  getUserDetails(userID: string): Observable<any> {
     const token = localStorage.getItem('token');
     const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
-    const url = `${this.apiUrl}/details/${userID.join(',')}`;
+    const url = `${this.apiUrl}/details/${userID}`;
     return this.http.get(url, { headers });  }
 
   isLoggedIn(): boolean {

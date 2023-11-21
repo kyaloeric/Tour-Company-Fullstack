@@ -13,27 +13,34 @@ const dbhelper = new Connection
 
 
 
-export const addTour = async(req:Request, res: Response) =>{
+export const addTour = async (req: Request, res: Response) => {
     try {
-        let { name, description, destination, startDate, endDate, price, duration, type } = req.body
-
-        let tourID = v4()
-
-
-        let result = dbhelper.execute('AddTour', {
-            tourID, name, description, destination, startDate, endDate, price, duration, type 
-        })
-        
-        return res.status(200).json({
-            message: 'Tour added successfully'
-        })
-        
+      let { name, description, destination, startDate, endDate, price, duration, type } = req.body;
+  
+      let tourID = v4();
+  
+      let result = await dbhelper.execute('AddTour', {
+        tourID,
+        name,
+        description,
+        destination,
+        startDate,
+        endDate,
+        price,
+        duration,
+        type,
+      });
+  
+      return res.status(200).json({
+        message: 'Tour added successfully',
+      });
     } catch (error) {
-        return res.json({
-            error: error
-        })
+      return res.json({
+        error: error,
+      });
     }
-}
+  };
+  
 
 
 

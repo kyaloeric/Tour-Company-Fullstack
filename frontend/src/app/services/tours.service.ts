@@ -1,6 +1,6 @@
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 import {Tour, TourDetails } from '../interfaces/tour';
@@ -51,4 +51,11 @@ export class TourService {
   }
 
   // Add more methods for updating, fetching specific tours, etc.
+
+
+  searchToursByType(type: string): Observable<Tour[]> {
+    const params = new HttpParams().set('type', type);
+    return this.http.get<Tour[]>('http://localhost:4000/tours/search', { params });
+  }
+
 }

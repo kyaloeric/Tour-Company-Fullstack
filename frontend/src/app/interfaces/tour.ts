@@ -20,3 +20,12 @@ export interface TourDetails {
     endDate:string,
     duration:string
 }
+
+
+export interface TourBooking extends Tour {
+    bookingID:string,
+    userID: string;
+    tourID: string;
+    selectedID:string;
+    bookingDate: string,
+  }

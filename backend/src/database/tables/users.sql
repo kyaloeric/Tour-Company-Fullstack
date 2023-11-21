@@ -1,6 +1,6 @@
 -- CREATE DATABASE XTours;
 
--- USE XTours;
+USE XTours;
 
 -- CREATE  TABLE Users(
 --     userID VARCHAR(100) PRIMARY KEY,
@@ -11,10 +11,10 @@
 --     hasBooked INT Default 0
 -- )
 
--- SELECT * FROM Users
-
 -- UPDATE Users SET role = 'admin' WHERE email = 'erickyalo19@gmail.com'
 
 -- DROP DATABASE Tours;
 
 -- DROP TABLE Users;
+
+SELECT * FROM Users;
